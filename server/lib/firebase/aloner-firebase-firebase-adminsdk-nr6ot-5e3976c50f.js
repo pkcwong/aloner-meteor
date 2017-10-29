@@ -1,4 +1,4 @@
-{
+export const credentials = {
   "type": "service_account",
   "project_id": "aloner-firebase",
   "private_key_id": "5e3976c50fe4e4152d29aaa4975c3ac822e693c4",
@@ -9,4 +9,4 @@
   "token_uri": "https://accounts.google.com/o/oauth2/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-nr6ot%40aloner-firebase.iam.gserviceaccount.com"
-}
+};
