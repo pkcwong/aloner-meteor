@@ -5,7 +5,7 @@ export const User = {
 	dump: (token) => {
 		return new Promise((resolve, reject) => {
 			admin.auth().verifyIdToken(token).then((decoded) => {
-				admin.database().ref('user/' + decoded.uid).once('value').then((snapshot) => {
+				admin.database().ref('user').child(decoded.uid).once('value').then((snapshot) => {
 					resolve(snapshot.val());
 				}).catch((err) => {
 					reject(err);
