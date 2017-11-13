@@ -5,7 +5,7 @@ export const Broadcast = {
 	dump: (json) => {
 		return new Promise((resolve, reject) => {
 			admin.auth().verifyIdToken(json['token']).then((decoded) => {
-				admin.firestore().collection('broadcasts').get().then((snapshot) => {
+				admin.firestore().collection('broadcasts').where('stamp', '>', json['createdAt']).get().then((snapshot) => {
 					let documents = [];
 					snapshot.forEach((doc) => {
 						let packet = {};
@@ -30,7 +30,7 @@ export const Broadcast = {
 				admin.firestore().collection('broadcasts').add({
 					uid: decoded.uid,
 					msg: json['text'],
-					stamp: new Date()
+					stamp: new Date().getTime()
 				}).then(() => {
 					resolve(json);
 				}).catch((err) => {
