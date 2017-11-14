@@ -4,23 +4,21 @@ export const Broadcast = {
 
 	dump: (json) => {
 		return new Promise((resolve, reject) => {
-			admin.auth().verifyIdToken(json['token']).then((decoded) => {
-				admin.firestore().collection('broadcasts').where('stamp', '>', json['createdAt']).get().then((snapshot) => {
-					let documents = [];
-					snapshot.forEach((doc) => {
-						let packet = {};
-						packet['_id'] = doc.id;
-						packet['text'] = doc.data()['msg'];
-						packet['createdAt'] = doc.data()['stamp'];
-						packet['user'] = {};
-						packet['user']['_id'] = doc.data()['uid'];
-						documents.push(packet);
-					});
-					resolve(documents);
+			admin.firestore().collection('broadcasts').where('stamp', '>', json['createdAt']).get().then((snapshot) => {
+				let documents = [];
+				snapshot.forEach((doc) => {
+					let packet = {};
+					packet['_id'] = doc.id;
+					packet['text'] = doc.data()['msg'];
+					packet['createdAt'] = doc.data()['stamp'];
+					packet['user'] = {};
+					packet['user']['_id'] = doc.data()['uid'];
+					documents.push(packet);
 				});
-			}).catch((err) => {
-				reject(err);
+				resolve(documents);
 			});
+		}).catch((err) => {
+			reject(err);
 		});
 	},
 
