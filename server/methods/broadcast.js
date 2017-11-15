@@ -42,8 +42,11 @@ export const Broadcast = {
 					msg: json['text'],
 					stamp: new Date().getTime()
 				}).then(() => {
-					Messaging.broadcast('broadcast', json['text']);
-					resolve(json);
+					Messaging.broadcast('broadcast', json['text']).then((res) => {
+						resolve(json);
+					}).catch((err) => {
+						console.error(err);
+					});
 				}).catch((err) => {
 					reject(err);
 				});
