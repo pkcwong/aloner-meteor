@@ -25,7 +25,12 @@ export const Messaging = {
 
 	broadcast: (topic, msg) => {
 		return new Promise((resolve, reject) => {
-			admin.messaging().sendToTopic(topic, msg).then((response) => {
+			admin.messaging().sendToTopic(topic, {
+				notification: {
+					title: topic,
+					body: msg
+				}
+			}).then((response) => {
 				resolve(response);
 			}).catch((err) => {
 				reject(err);
