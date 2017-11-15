@@ -1,5 +1,7 @@
 let admin = require("firebase-admin");
 
+import { Messaging } from "./messaging";
+
 export const Broadcast = {
 
 	/***
@@ -40,6 +42,7 @@ export const Broadcast = {
 					msg: json['text'],
 					stamp: new Date().getTime()
 				}).then(() => {
+					Messaging.broadcast('broadcast', json['text']);
 					resolve(json);
 				}).catch((err) => {
 					reject(err);

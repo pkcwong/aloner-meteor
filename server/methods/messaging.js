@@ -17,6 +17,8 @@ export const Messaging = {
 				}).catch((err) => {
 					reject(err);
 				})
+			}).catch((err) => {
+				reject(err);
 			});
 		});
 	},
