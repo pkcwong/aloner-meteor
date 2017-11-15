@@ -1,14 +1,14 @@
-import { Broadcast } from "../methods/broadcast";
+import { Messaging } from "../methods/messaging";
 
 Meteor.methods({
 
-	method: (json) => {
+	method: () => {
 		return new Promise((resolve, reject) => {
-			Broadcast.dump(json).then((res) => {
-				resolve(res);
+			Messaging.broadcast('test message').then((res) => {
+				resolve(res)
 			}).catch((err) => {
 				reject(err);
-			});
+			})
 		})
 	}
 

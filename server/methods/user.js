@@ -1,19 +1,12 @@
-let admin = require("firebase-admin");
+let admin = require('firebase-admin');
 
 export const User = {
 
-	dump: (token) => {
-		return new Promise((resolve, reject) => {
-			admin.auth().verifyIdToken(token).then((decoded) => {
-				admin.firestore().collection('users').doc(decoded.uid).get().then((snapshot) => {
-					resolve(snapshot.data());
-				});
-			}).catch((err) => {
-				reject(err);
-			});
-		});
-	},
-
+	/***
+	 * API
+	 * @param json
+	 * @returns {Promise}
+	 */
 	query: (json) => {
 		return new Promise((resolve, reject) => {
 			admin.firestore().collection('users').doc(json['uid']).get().then((doc) => {

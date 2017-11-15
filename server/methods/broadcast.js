@@ -2,6 +2,11 @@ let admin = require("firebase-admin");
 
 export const Broadcast = {
 
+	/***
+	 * API
+	 * @param json
+	 * @returns {Promise.<T>|*|Promise}
+	 */
 	dump: (json) => {
 		return new Promise((resolve, reject) => {
 			admin.firestore().collection('broadcasts').where('stamp', '>', json['createdAt']).get().then((snapshot) => {
@@ -22,6 +27,11 @@ export const Broadcast = {
 		});
 	},
 
+	/***
+	 * API
+	 * @param json
+	 * @returns {Promise}
+	 */
 	send: (json) => {
 		return new Promise((resolve, reject) => {
 			admin.auth().verifyIdToken(json['token']).then((decoded) => {

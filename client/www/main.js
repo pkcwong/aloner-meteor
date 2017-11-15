@@ -5,11 +5,11 @@ Router.route('/', function() {
 });
 
 Template.main.onRendered(() => {
-	firebase.auth().signInWithEmailAndPassword('test@aloner.com', 'abcd1234').then(() => {
+	firebase.auth().signInWithEmailAndPassword('system@aloner.com', 'abcd1234').then(() => {
 		console.log(firebase.auth().currentUser);
 		firebase.auth().currentUser.getIdToken(true).then((token) => {
 			console.log(token);
-			Meteor.call('method', {token: token}, (err, res) => {
+			Meteor.call('method', (err, res) => {
 				console.log(res);
 			});
 		});
