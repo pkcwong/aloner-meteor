@@ -18,6 +18,15 @@ Router.map(function() {
 						this.response.end(JSON.stringify(err));
 					});
 					break;
+				case 'query':
+					Events.query(this.response.body).then((res) => {
+						console.log(res);
+						this.response.end(JSON.stringify(res));
+					}).catch((err) => {
+						console.error(err);
+						this.response.end(JSON.stringify(err));
+					});
+					break;
 			}
 		}
 	});
