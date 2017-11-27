@@ -23,9 +23,9 @@ export const Broadcast = {
 					documents.push(packet);
 				});
 				resolve(documents);
+			}).catch((err) => {
+				reject(err);
 			});
-		}).catch((err) => {
-			reject(err);
 		});
 	},
 
@@ -43,7 +43,7 @@ export const Broadcast = {
 					stamp: new Date().getTime()
 				}).then(() => {
 					Messaging.broadcast('broadcast', json['text']).then((res) => {
-						resolve(json);
+						resolve({});
 					}).catch((err) => {
 						console.error(err);
 					});
