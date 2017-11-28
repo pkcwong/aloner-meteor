@@ -85,7 +85,7 @@ export const Events = {
 		return new Promise((resolve, reject) => {
 			admin.auth().verifyIdToken(json['token']).then((decoded) => {
 				admin.firestore().collection('events').add({
-					category: json['sport'],
+					category: json['category'],
 					description: json['description'],
 					location: json['location'],
 					owner: decoded.uid,
@@ -98,7 +98,7 @@ export const Events = {
 					admin.firestore().collection('enrollment').add({
 						approved: true,
 						confirmed: true,
-						event: _id,
+						event: _id.id,
 						uid: decoded.uid
 					}).then(() => {
 						resolve({});
