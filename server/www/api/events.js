@@ -36,6 +36,24 @@ Router.map(function() {
 						this.response.end(JSON.stringify(err));
 					});
 					break;
+				case 'create':
+					Events.create(this.request.body).then((res) => {
+						console.log(res);
+						this.response.end(JSON.stringify(res));
+					}).catch((err) => {
+						console.error(err);
+						this.response.end(JSON.stringify(err));
+					});
+					break;
+				case 'enroll':
+					Events.enroll(this.request.body).then((res) => {
+						console.log(res);
+						this.response.end(JSON.stringify(res));
+					}).catch((err) => {
+						console.error(err);
+						this.response.end(JSON.stringify(err));
+					});
+					break;
 			}
 		}
 	});
