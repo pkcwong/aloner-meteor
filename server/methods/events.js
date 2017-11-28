@@ -76,6 +76,11 @@ export const Events = {
 		});
 	},
 
+	/***
+	 * API
+	 * @param json
+	 * @returns {Promise}
+	 */
 	create: (json) => {
 		return new Promise((resolve, reject) => {
 			admin.auth().verifyIdToken(json['token']).then((decoded) => {
@@ -95,6 +100,10 @@ export const Events = {
 						confirmed: true,
 						event: _id,
 						uid: decoded.uid
+					}).then(() => {
+						resolve({});
+					}).catch((err) => {
+						reject(err);
 					});
 				}).catch((err) => {
 					reject(err);
@@ -105,6 +114,11 @@ export const Events = {
 		});
 	},
 
+	/***
+	 * API
+	 * @param json
+	 * @returns {Promise}
+	 */
 	enroll: (json) => {
 		return new Promise((resolve, reject) => {
 			admin.auth().verifyIdToken(json['token']).then((decoded) => {
