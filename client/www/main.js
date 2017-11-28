@@ -9,7 +9,7 @@ Template.main.onRendered(() => {
 		console.log(firebase.auth().currentUser);
 		firebase.auth().currentUser.getIdToken(true).then((token) => {
 			console.log(token);
-			Meteor.call('method', (err, res) => {
+			Meteor.call('method', token, (err, res) => {
 				console.log(res);
 			});
 		});

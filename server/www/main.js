@@ -2,9 +2,16 @@ import { Events } from "../methods/events";
 
 Meteor.methods({
 
-	method: () => {
+	method: (token) => {
 		return new Promise((resolve, reject) => {
-			resolve(Events.query({'_id': 'CVDJvIBSB1CxopxivX34'}));
+			Events.enroll({
+				token: token,
+				_id: 'CVDJvIBSB1CxopxivX34'
+			}).then((res) => {
+				resolve(res);
+			}).catch((err) => {
+				reject(err);
+			})
 		})
 	}
 

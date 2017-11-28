@@ -123,7 +123,7 @@ export const Events = {
 		return new Promise((resolve, reject) => {
 			admin.auth().verifyIdToken(json['token']).then((decoded) => {
 				admin.firestore().collection('enrollment').where('event', '==', json['_id']).where('uid', '==', decoded.uid).get().then((snapshot) => {
-					if (snapshot.length  == 0) {
+					if (snapshot.empty) {
 						admin.firestore().collection('enrollment').add({
 							approved: false,
 							confirm: true,
@@ -137,7 +137,7 @@ export const Events = {
 					} else {
 						snapshot.forEach((doc) => {
 							admin.firestore().collection('enrollment').doc(doc.id).update({
-								confirmed: !doc['confirmed']
+								confirm: !doc.data()['confirm']
 							}).then(() => {
 								resolve({});
 							}).catch((err) => {
