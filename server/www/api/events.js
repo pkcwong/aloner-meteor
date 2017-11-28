@@ -27,6 +27,15 @@ Router.map(function() {
 						this.response.end(JSON.stringify(err));
 					});
 					break;
+				case 'category':
+					Events.category(this.request.body).then((res) => {
+						console.log(res);
+						this.response.end(JSON.stringify(res));
+					}).catch((err) => {
+						console.error(err);
+						this.response.end(JSON.stringify(err));
+					});
+					break;
 			}
 		}
 	});
