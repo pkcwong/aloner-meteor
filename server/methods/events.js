@@ -33,6 +33,8 @@ export const Events = {
 				let packet = {};
 				packet['owner'] = doc.data()['owner'];
 				packet['description'] = doc.data()['description'];
+				packet['location'] = doc.data()['location'];
+				packet['time'] = doc.data()['time'];
 				packet['_id'] = doc.id;
 				resolve(packet);
 			}).catch((err) => {

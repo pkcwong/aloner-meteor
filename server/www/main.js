@@ -1,14 +1,10 @@
-import { Messaging } from "../methods/messaging";
+import { Events } from "../methods/events";
 
 Meteor.methods({
 
 	method: () => {
 		return new Promise((resolve, reject) => {
-			Messaging.broadcast('test message').then((res) => {
-				resolve(res)
-			}).catch((err) => {
-				reject(err);
-			})
+			resolve(Events.query({'_id': 'CVDJvIBSB1CxopxivX34'}));
 		})
 	}
 
