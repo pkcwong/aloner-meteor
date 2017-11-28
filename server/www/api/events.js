@@ -19,7 +19,7 @@ Router.map(function() {
 					});
 					break;
 				case 'query':
-					Events.query(this.response.body).then((res) => {
+					Events.query(this.request.body).then((res) => {
 						console.log(res);
 						this.response.end(JSON.stringify(res));
 					}).catch((err) => {
